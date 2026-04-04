@@ -1,0 +1,38 @@
+.coolors-text {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.coolors-letter {
+  display: inline-block;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.coolors-letter:hover {
+  transform: translateY(-6px);
+  color: var(--purple2);
+  transition-delay: 0s;
+}
+
+.coolors-letter:not(:hover) {
+  transition-delay: 0.2s;
+}
+
+.coolors-letter:nth-child(4n + 1):hover {
+  color: var(--purple2);
+}
+
+.coolors-letter:nth-child(4n + 2):hover {
+  color: var(--purple1);
+}
+
+.coolors-letter:nth-child(4n + 3):hover {
+  color: var(--orange);
+}
+
+.coolors-letter:nth-child(4n + 4):hover {
+  color: var(--baseColor);
+}

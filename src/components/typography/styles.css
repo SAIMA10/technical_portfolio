@@ -1,0 +1,53 @@
+.text-color-whiteText {
+  color: var(--whiteText);
+}
+
+.text-color-orange {
+  color: var(--orange);
+}
+
+.text-color-purple1 {
+  color: var(--purple1);
+}
+
+.text-color-purple2 {
+  color: var(--purple2);
+}
+
+.text-color-baseColor {
+  color: var(--baseColor);
+}
+
+.text-unbounded {
+  font-family: "Unbounded", sans-serif;
+  /* font-optical-sizing: auto; */
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+.text-manrope {
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+}
+
+.text-manrope-underline {
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.text-poller-one {
+  font-family: "Poller One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.clickable-text {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.clickable-text:hover {
+  color: var(--orange);
+  transform: translateY(-2px);
+}
