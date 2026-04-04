@@ -1,31 +1,35 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import "./styles.css";
-import Text from "../../components/typography";
-import HoverTextAnimation from "../../components/hover-text-animation";
-import { useMotionValueEvent, useScroll, motion } from "framer-motion";
-import { colors } from "../../constants";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ModalView from "../../components/modal";
+import HoverTextAnimation from "../../components/hover-text-animation";
+import { colors } from "../../constants";
+import Text from "../../components/typography";
+import { MdOutlineWorkOutline } from "react-icons/md";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
-const projectsData = [
+const experienceData = [
   {
     id: 1,
-    title: "Smart Traffic Light Management System in Abu Dhabi using RL",
+    title: "Bajaj Finserv Health",
     description: "Content",
-    images: [],
+    place: "Pune",
+    role: "Software Development Engineer",
+    timePeriod: "July 2023 - April 2025",
     bgColor: colors["purple_2"],
     color: "baseColor",
     primaryColor: colors["baseColor"],
-    // link: "https://github.com/safaminhaj/rl-traffic-control"
   },
   {
     id: 2,
-    title: "Parallel Game of Life Using MPI",
+    title: "Bajaj Finserv Health",
     description: "Content",
-    images: [],
+    place: "Pune",
+    role: "Software Development Engineer Intern",
+    timePeriod: "Jan 2023 - July 2023",
     bgColor: colors["orange"],
     color: "whiteText",
     primaryColor: colors["whiteText"],
@@ -33,102 +37,44 @@ const projectsData = [
   },
   {
     id: 3,
-    title: "AITutor: A self-improving multi-agent tutor",
+    title: "Avon Building Solution Pvt Ltd.",
     description: "Content",
-    images: [],
+    place: "Pune",
+    role: "Engineering Intern",
+    timePeriod: "Feb 2022 - May 2022",
     bgColor: colors["purple_1"],
     color: "baseColor",
     primaryColor: colors["baseColor"],
-    link: "https://github.com/SAIMA10/Ruya_AI_Hackathon",
   },
   {
     id: 4,
-    title: "NL2TCTL: Extending Temporal Logic Translation",
+    title: "REDA Chemicals",
     description: "Content",
-    images: [],
+    place: "Dubai",
+    role: "Web Developer and Graphic Designer Intern",
+    timePeriod: "August 2021 - October 2022",
     bgColor: colors["baseColor"],
     color: "whiteText",
     primaryColor: colors["whiteText"],
-    // link: "https://github.com/SAIMA10/Ruya_AI_Hackathon"
-  },
-  {
-    id: 5,
-    title: "Frontend Development Applications",
-    description: "Content",
-    images: [],
-    bgColor: colors["purple_2"],
-    color: "baseColor",
-    primaryColor: colors["baseColor"],
-    // link: "https://github.com/SAIMA10/Ruya_AI_Hackathon"
-  },
-  {
-    id: 6,
-    title: "Frontend Development Applications",
-    description: "Content",
-    images: [],
-    bgColor: colors["purple_2"],
-    color: "baseColor",
-    primaryColor: colors["baseColor"],
-    // link: "https://github.com/SAIMA10/Ruya_AI_Hackathon"
-  },
-  {
-    id: 7,
-    title: "Frontend Development Applications",
-    description: "Content",
-    images: [],
-    bgColor: colors["purple_2"],
-    color: "baseColor",
-    // link: "https://github.com/SAIMA10/Ruya_AI_Hackathon"
   },
 ];
 
-const Projects = () => {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
-
-    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 20);
-
-    const ctx = gsap.context(() => {
-      gsap.to(track, {
-        x: getScrollAmount,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${track.scrollWidth - window.innerWidth + 20}`,
-          scrub: 1,
-          pin: ".projects-sticky-frame",
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+const Experience = () => {
+  const [selectedExperience, setSelectedExperience] = useState(null);
 
   return (
     <>
-      <section className="projects-parent-container" ref={sectionRef}>
-        <div className="projects-sticky-frame">
-          <div className="projects-header">
-            <HoverTextAnimation text="PROJECTS" />
+      <section className="experience-parent-container">
+        <div className="experience-sticky-frame">
+          <div className="experience-header">
+            <HoverTextAnimation text="EXPERIENCE" />
           </div>
-          <div className="projects-wrapper" ref={trackRef}>
-            {/* <div className="projects-container"> */}
-            {projectsData?.map((project) => {
+          <div className="experience-wrapper">
+            {experienceData?.map((exp) => {
               return (
                 <motion.div
-                  className="project-card-container"
-                  style={{ backgroundColor: project?.bgColor }}
+                  className="experience-card-container"
+                  style={{ backgroundColor: exp?.bgColor }}
                 >
                   <motion.div
                     style={{
@@ -149,9 +95,14 @@ const Projects = () => {
                     }}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                   >
                     <motion.div
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "end",
+                      }}
                       variants={{
                         hidden: { opacity: 0, y: 20 },
                         show: {
@@ -161,14 +112,10 @@ const Projects = () => {
                         },
                       }}
                     >
-                      <Text
-                        variant="poller-one"
-                        fontSize={48}
-                        color={project?.color}
-                        className="project-card-id-container"
-                      >
-                        {project?.id}
-                      </Text>
+                      <MdOutlineWorkOutline
+                        color={exp?.primaryColor}
+                        className="card-icon"
+                      />
                     </motion.div>
                     <motion.div
                       variants={{
@@ -183,9 +130,9 @@ const Projects = () => {
                       <Text
                         variant="unbounded"
                         fontSize={26}
-                        color={project?.color}
+                        color={exp?.color}
                       >
-                        {project?.title}
+                        {exp?.title}
                       </Text>
                     </motion.div>
                     <motion.div
@@ -201,9 +148,9 @@ const Projects = () => {
                       <Text
                         variant="unbounded"
                         fontSize={14}
-                        color={project?.color}
+                        color={exp?.color}
                       >
-                        {project?.description}
+                        {exp?.description}
                       </Text>
                     </motion.div>
                   </motion.div>
@@ -223,10 +170,10 @@ const Projects = () => {
                     <Text
                       variant="unbounded"
                       fontSize={12}
-                      color={project?.color}
+                      color={exp?.color}
                       // onClick={() => setIsModalOpen(true)}
-                      onClick={() => setSelectedProject(project)}
-                      className="project-card-footer-container"
+                      onClick={() => setSelectedExperience(exp)}
+                      className="experience-card-footer-container"
                     >
                       Read more!
                     </Text>
@@ -234,17 +181,16 @@ const Projects = () => {
                 </motion.div>
               );
             })}
-            {/* </div> */}
           </div>
         </div>
       </section>
       <ModalView
-        isOpen={!!selectedProject}
-        onClose={() => setSelectedProject(null)}
-        project={selectedProject}
+        isOpen={!!selectedExperience}
+        onClose={() => setSelectedExperience(null)}
+        project={selectedExperience}
       />
     </>
   );
 };
 
-export default Projects;
+export default Experience;

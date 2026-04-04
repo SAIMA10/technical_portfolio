@@ -6,14 +6,15 @@
 
 .coolors-letter {
   display: inline-block;
-  transition:
+  /* transition:
     transform 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease; */
+  transition: transform 0.25s ease;
 }
 
 .coolors-letter:hover {
   transform: translateY(-6px);
-  color: var(--purple2);
+  color: var(--purple2) !important;
   transition-delay: 0s;
 }
 
@@ -22,17 +23,17 @@
 }
 
 .coolors-letter:nth-child(4n + 1):hover {
-  color: var(--purple2);
+  color: var(--purple2) !important;
 }
 
 .coolors-letter:nth-child(4n + 2):hover {
-  color: var(--purple1);
+  color: var(--purple1) !important;
 }
 
 .coolors-letter:nth-child(4n + 3):hover {
-  color: var(--orange);
+  color: var(--orange) !important;
 }
 
 .coolors-letter:nth-child(4n + 4):hover {
-  color: var(--baseColor);
+  color: var(--baseColor) !important;
 }

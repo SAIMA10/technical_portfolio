@@ -1,0 +1,30 @@
+.contact-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-direction: column; 
+}
+
+.column-contact-body-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+  /* flex: 1; */
+}
+
+.row-contact-body-container {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 250px;
+  align-items: center;
+  justify-content: center;
+}

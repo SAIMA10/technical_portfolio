@@ -51,3 +51,9 @@
   color: var(--orange);
   transform: translateY(-2px);
 }
+
+.text-raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

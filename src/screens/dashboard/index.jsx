@@ -11,9 +11,13 @@ import Lottie from "lottie-react";
 import arrowRight from "../../assets/images/union-1.svg";
 import { colors } from "../../constants";
 import HoverTextAnimation from "../../components/hover-text-animation/index.jsx";
-import { FaLinkedin, FaGithub, FaBehance } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaBehance, FaCat } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import Projects from "../projects/index.jsx";
+import Education from "../education/index.jsx";
+import Experience from "../experience/index.jsx";
+import Contact from "../contact/index.jsx";
+import ShinyText from "../../components/shiny-text/index.jsx";
 
 const contentSlides = [
   {
@@ -46,6 +50,9 @@ const Dashboard = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const projectsRef = useRef(null);
+  const educationRef = useRef(null);
+  const experienceRef = useRef(null);
+  const contactRef = useRef(null);
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({
@@ -81,6 +88,18 @@ const Dashboard = () => {
                 variant="manrope"
                 fontSize={18}
                 clickable
+                onClick={() => scrollToSection(experienceRef)}
+              >
+                Experience
+              </Text>
+            </motion.div>
+            <motion.div
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+            >
+              <Text
+                variant="manrope"
+                fontSize={18}
+                clickable
                 onClick={() => scrollToSection(projectsRef)}
               >
                 Projects
@@ -89,28 +108,34 @@ const Dashboard = () => {
             <motion.div
               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
             >
-              <Text variant="manrope" fontSize={18} clickable>
-                Experience
-              </Text>
-            </motion.div>
-            <motion.div
-              variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-            >
-              <Text variant="manrope" fontSize={18} clickable>
+              <Text
+                variant="manrope"
+                fontSize={18}
+                clickable
+                onClick={() => scrollToSection(educationRef)}
+              >
                 Education
               </Text>
             </motion.div>
             <motion.div
               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
             >
-              <Text variant="manrope" fontSize={18} clickable>
+              <Text
+                variant="manrope"
+                fontSize={18}
+                clickable
+                onClick={() => scrollToSection(contactRef)}
+              >
                 Contact
               </Text>
             </motion.div>
-            {/* add div to download */}
-            <Text variant="manrope-underline" color="orange" fontSize={18}>
-              Resume
-            </Text>
+            <motion.div
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+            >
+              <Text variant="manrope-underline" color="orange" fontSize={18}>
+                Resume
+              </Text>
+            </motion.div>
           </motion.div>
         </div>
         {/* body */}
@@ -144,7 +169,18 @@ const Dashboard = () => {
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               >
-                <HoverTextAnimation text="SAIMA ANSARI" />
+                <ShinyText
+                  text="SAIMA ANSARI"
+                  speed={2}
+                  delay={0}
+                  color={colors["purple_2"]}
+                  shineColor={colors["whiteText"]}
+                  spread={120}
+                  direction="left"
+                  yoyo={false}
+                  pauseOnHover={false}
+                  disabled={false}
+                />
               </motion.div>
               <div className="content-slider-container">
                 <AnimatePresence mode="wait">
@@ -158,7 +194,7 @@ const Dashboard = () => {
                   >
                     <Text
                       variant="unbounded"
-                      fontSize={18}
+                      fontSize={22}
                       className="content-slide-text"
                       color="purple1"
                     >
@@ -195,9 +231,47 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        <div ref={experienceRef} >
+          <Experience />
+        </div>
         <div ref={projectsRef}>
           <Projects />
         </div>
+        <div ref={educationRef}>
+          <Education />
+        </div>
+        <div ref={contactRef}>
+          <Contact />
+        </div>
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            show: {
+              opacity: 1,
+              y: 0,
+            },
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "140px",            
+          }}
+        >
+          <Text variant="unbounded" fontSize={20} color="purple2">
+            Designed and built by
+            <Text
+              variant="unbounded"
+              style={{ marginLeft: "5px", marginRight: "5px" }}
+            >
+              Saima Ansari
+            </Text>
+            <FaCat className="cat-icon" />
+          </Text>
+        </motion.div>
       </div>
     </>
   );
