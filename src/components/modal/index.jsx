@@ -90,26 +90,30 @@ const ModalView = ({
                 ) : (
                   <></>
                 )}
-                <>
-                  <div className="modal-image-container">
-                    {project?.images?.length > 1 ? (
-                      project?.images?.map((img, index) => (
+                {project?.images ? (
+                  <>
+                    <div className="modal-image-container">
+                      {project?.images?.length > 1 ? (
+                        project?.images?.map((img, index) => (
+                          <img
+                            key={index}
+                            src={img}
+                            alt={`${project?.title}-${index}`}
+                            className="project-image-small"
+                          />
+                        ))
+                      ) : (
                         <img
-                          key={index}
-                          src={img}
-                          alt={`${project?.title}-${index}`}
-                          className="project-image-small"
+                          src={project?.images}
+                          alt={project?.title}
+                          className="project-image"
                         />
-                      ))
-                    ) : (
-                      <img
-                        src={project?.images}
-                        alt={project?.title}
-                        className="project-image"
-                      />
-                    )}
-                  </div>
-                </>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           ) : (

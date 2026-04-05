@@ -1,10 +1,10 @@
 .projects-parent-container {
   position: relative;
-  height: 220vh;
+  /* height: 280vh; */
 }
 
 .projects-sticky-frame {
-  /* position: sticky;  */
+  position: sticky; 
   top: 0;
   height: 100vh;
   overflow: hidden;

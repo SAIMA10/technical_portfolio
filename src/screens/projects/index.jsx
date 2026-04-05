@@ -14,11 +14,13 @@ import notesProjectImg from "../../assets/images/notes_app.png";
 import weatherProjectImg from "../../assets/images/weather_proj.png";
 import expensesProjectImg from "../../assets/images/expenses_proj.png";
 import portfolioProjectImg from "../../assets/images/portoflio.png";
+import timeSeries from "../../assets/images/time_series.png";
 import { FaGithub } from "react-icons/fa";
 import { LuFileVideo } from "react-icons/lu";
 import { TbReportMoney } from "react-icons/tb";
 import { TiWeatherCloudy } from "react-icons/ti";
 import { GrGamepad } from "react-icons/gr";
+import { useScreen } from "../../hooks";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,23 +96,6 @@ const projectsData = [
     link2: "",
     skills: ["Python", "LLM", "RL", "ChromaDB", "RAG", "SentenceTransformers"],
   },
-  //   {
-  //     id: 4,
-  //     title: "NL2TCTL: Extending Temporal Logic Translation",
-  //     description: "Content",
-  //     longDescription1: "bleh",
-  //     longDescription2: "bleh",
-  //     longDescription3: "bleh",
-  //     images: [],
-  //     bgColor: colors["baseColor"],
-  //     color: "whiteText",
-  //     primaryColor: colors["whiteText"],
-  //     icon: <FaGithub className="content-icon" />,
-  //     // link: "https://github.com/SAIMA10/Ruya_AI_Hackathon"
-  //     icon2: "text",
-  //     link2: "text",
-  //     skills: ["PyTorch", "SB3", "NumPy", "Matplotlib", "Conda"],
-  //   },
   {
     id: 4,
     title: "MERN-Stack Notes Application",
@@ -187,13 +172,37 @@ const projectsData = [
     link2: "https://saima-ansari.netlify.app/",
     skills: ["JavaScript", "ReactJS", "gsap", "framer-motion", "Spline"],
   },
+  {
+    id: 7,
+    title: "Time Series Forecasting",
+    description:
+      "Developed a time-series forecasting system for daily temperature prediction using statistical modeling techniques including regression and ARIMA-based approaches.",
+    longDescription1:
+      "The workflow begins with data preprocessing and exploratory analysis. The time series is analyzed for stationarity using the Augmented Dickey-Fuller (ADF) test, and appropriate transformations such as differencing are applied to stabilize the series.",
+    longDescription2:
+      "Feature engineering is performed by creating time-based features and an advanced ARIMA/SARIMAX model is built to capture both trend and seasonal patterns in the data.",
+    longDescription3:
+      "Model performance is evaluated using standard regression metrics such as MAE, RMSE, and MAPE, and results are visualized to compare predicted vs actual values.",
+    images: [timeSeries],
+    bgColor: colors["purple_1"],
+    color: "baseColor",
+    primaryColor: colors["baseColor"],
+    icon: (
+      <FaGithub className="project-icon-link" color={colors["baseColor"]} />
+    ),
+    link: "https://github.com/SAIMA10/Time_Series_Plot/tree/main/Downloads",
+    icon2: "",
+    link2: "",
+    skills: ["Pandas", "NumPy", "Scikit-learn", "Matplotlib", "pmdarima"],
+  },
 ];
 
 const Projects = () => {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMonitorScreen = useScreen("2xl");
+
   const [selectedProject, setSelectedProject] = useState(null);
 
   useLayoutEffect(() => {
@@ -201,7 +210,7 @@ const Projects = () => {
     const track = trackRef.current;
     if (!section || !track) return;
 
-    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 20);
+    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 50);
 
     const ctx = gsap.context(() => {
       gsap.to(track, {
@@ -210,7 +219,7 @@ const Projects = () => {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${track.scrollWidth - window.innerWidth + 20}`,
+          end: () => `+=${track.scrollWidth - window.innerWidth + 50}`,
           scrub: 1,
           pin: ".projects-sticky-frame",
           invalidateOnRefresh: true,
@@ -224,7 +233,13 @@ const Projects = () => {
 
   return (
     <>
-      <section className="projects-parent-container" ref={sectionRef}>
+      <section
+        className="projects-parent-container"
+        style={{
+          height: isMonitorScreen ? "200vh" : "280vh",
+        }}
+        ref={sectionRef}
+      >
         <div className="projects-sticky-frame">
           <div className="projects-header">
             <HoverTextAnimation text="PROJECTS" />
@@ -234,6 +249,7 @@ const Projects = () => {
             {projectsData?.map((project) => {
               return (
                 <motion.div
+                  key={project.id}
                   className="project-card-container"
                   style={{ backgroundColor: project?.bgColor }}
                 >
@@ -331,7 +347,6 @@ const Projects = () => {
                       variant="unbounded"
                       fontSize={12}
                       color={project?.color}
-                      // onClick={() => setIsModalOpen(true)}
                       onClick={() => setSelectedProject(project)}
                       className="project-card-footer-container"
                     >

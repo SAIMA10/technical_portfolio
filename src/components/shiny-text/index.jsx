@@ -125,7 +125,7 @@ const ShinyText = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Text variant="poller-one" fontSize={62} className="coolors-text">
+      <Text variant="poller-one" fontSize={52} className="coolors-text">
         {text.split("").map((char, index) => (
           <span
             key={`${char}-${index}`}

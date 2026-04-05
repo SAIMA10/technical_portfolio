@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import Text from "../../components/typography";
 import linkedinIcon from "../../assets/images/linkedin.svg";
@@ -65,6 +65,20 @@ const Dashboard = () => {
     setActiveIndex((prev) => (prev + 1) % contentSlides.length);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowRight") {
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
       <div className="container-background">
@@ -86,7 +100,7 @@ const Dashboard = () => {
             >
               <Text
                 variant="manrope"
-                fontSize={18}
+                fontSize={16}
                 clickable
                 onClick={() => scrollToSection(experienceRef)}
               >
@@ -98,7 +112,7 @@ const Dashboard = () => {
             >
               <Text
                 variant="manrope"
-                fontSize={18}
+                fontSize={16}
                 clickable
                 onClick={() => scrollToSection(projectsRef)}
               >
@@ -110,7 +124,7 @@ const Dashboard = () => {
             >
               <Text
                 variant="manrope"
-                fontSize={18}
+                fontSize={16}
                 clickable
                 onClick={() => scrollToSection(educationRef)}
               >
@@ -122,7 +136,7 @@ const Dashboard = () => {
             >
               <Text
                 variant="manrope"
-                fontSize={18}
+                fontSize={16}
                 clickable
                 onClick={() => scrollToSection(contactRef)}
               >
@@ -132,7 +146,18 @@ const Dashboard = () => {
             <motion.div
               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
             >
-              <Text variant="manrope-underline" color="orange" fontSize={18}>
+              <Text
+                variant="manrope-underline"
+                color="orange"
+                fontSize={16}
+                clickable
+                onClick={() =>
+                  window.open(
+                    "https://drive.google.com/file/d/1lNqJ6l54z9yM8EXsNs7-Mn9X94MmUiC2/view?usp=sharing",
+                    "_blank",
+                  )
+                }
+              >
                 Resume
               </Text>
             </motion.div>
@@ -194,7 +219,7 @@ const Dashboard = () => {
                   >
                     <Text
                       variant="unbounded"
-                      fontSize={22}
+                      fontSize={20}
                       className="content-slide-text"
                       color="purple1"
                     >
@@ -231,7 +256,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div ref={experienceRef} >
+        <div ref={experienceRef}>
           <Experience />
         </div>
         <div ref={projectsRef}>
@@ -258,7 +283,7 @@ const Dashboard = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "140px",            
+            marginTop: "140px",
           }}
         >
           <Text variant="unbounded" fontSize={20} color="purple2">

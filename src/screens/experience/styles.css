@@ -1,6 +1,6 @@
 .experience-parent-container {
   position: relative;
-  height: 70vh; 
+  height: 100vh; 
 }
 
 .experience-sticky-frame {
@@ -21,7 +21,6 @@
   display: flex;
   justify-content: center;
   margin-bottom: 48px;
-  /* flex-shrink: 0; */
 }
 
 .experience-container {
@@ -34,12 +33,11 @@
   display: flex;
   gap: 24px;
   width: max-content;
-  margin-left: 10px;
+  margin-left: 60px;
 }
 
 .experience-card-container {
   min-height: 367px;
-  min-width: 398px;
   max-width: 398px;
   border-radius: 20px;
   padding: 20px;

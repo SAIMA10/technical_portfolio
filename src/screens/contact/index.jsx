@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import HoverTextAnimation from "../../components/hover-text-animation";
 import { FaLinkedin, FaGithub, FaBehance, FaInstagram } from "react-icons/fa";
@@ -8,6 +8,15 @@ import { IoIosCall } from "react-icons/io";
 import { motion } from "framer-motion";
 
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("+971501533767");
+    setCopied(true);
+
+    setTimeout(() => setCopied(false), 1500);
+  };
+
   return (
     <>
       <motion.div
@@ -44,7 +53,12 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/saima-ansari-66a99b188",
+                      "_blank",
+                    )
+                  }
                 >
                   Connect with me
                 </Text>
@@ -63,7 +77,9 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={() =>
+                    window.open("mailto:sam.ansari2002@gmail.com", "_blank")
+                  }
                 >
                   Email me
                 </Text>
@@ -81,9 +97,9 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={handleCopy}
                 >
-                  Give a call
+                  {copied ? "Copied!" : "Give a call"}
                 </Text>
               </motion.div>
             </div>
@@ -101,7 +117,12 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={() =>
+                    window.open(
+                      "https://www.instagram.com/sam_ukiyo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+                      "_blank",
+                    )
+                  }
                 >
                   Check my instagram
                 </Text>
@@ -119,7 +140,12 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={() =>
+                    window.open(
+                      "https://www.behance.net/saimaansari2",
+                      "_blank",
+                    )
+                  }
                 >
                   Check my designs
                 </Text>
@@ -137,7 +163,9 @@ const Contact = () => {
                   variant="raleway"
                   fontSize={18}
                   clickable
-                  // onClick={() => scrollToSection(projectsRef)}
+                  onClick={() =>
+                    window.open("https://github.com/SAIMA10", "_blank")
+                  }
                 >
                   Check my projects
                 </Text>
