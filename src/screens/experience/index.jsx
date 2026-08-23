@@ -8,6 +8,7 @@ import HoverTextAnimation from "../../components/hover-text-animation";
 import { colors } from "../../constants";
 import Text from "../../components/typography";
 import { MdOutlineWorkOutline } from "react-icons/md";
+import { useScreen } from "../../hooks/index.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,7 @@ const experienceData = [
   {
     id: 1,
     title: "Bajaj Finserv Health, Pune",
+    shortDescription: "Software Development Engineer",
     description:
       "Software Developement Engineer (July 2023 - April 2025) & Software Developer Intern (January 2023 - July 2023)",
     longDescription1:
@@ -44,6 +46,7 @@ const experienceData = [
   {
     id: 2,
     title: "Avon Building Solution Pvt Ltd., Pune",
+    shortDescription: "Engineering Intern",
     description: "Engineering Intern (February 2022 - May 2022)",
     longDescription1: "Implemented ERPNext software on DigitalOcean.",
     longDescription2: "Acquired knowledge on cloud services and domains.",
@@ -56,6 +59,7 @@ const experienceData = [
   {
     id: 3,
     title: "REDA Chemicals, Dubai",
+    shortDescription: "Web Developer & Graphic Design Intern",
     description:
       "Web Developer & Graphic Design Intern (August 2021 - October 2022)",
     longDescription1:
@@ -73,6 +77,7 @@ const experienceData = [
 const Experience = () => {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  const isPhone = !useScreen("md");
 
   const [selectedExperience, setSelectedExperience] = useState(null);
 
@@ -105,58 +110,96 @@ const Experience = () => {
 
   return (
     <>
-      <section className="experience-parent-container">
-        <div className="experience-sticky-frame">
-          <div className="experience-header">
-            <HoverTextAnimation text="EXPERIENCE" />
-          </div>
-          <div className="experience-wrapper">
-            {experienceData?.map((exp) => {
-              return (
-                <motion.div
-                  className="experience-card-container"
-                  style={{ backgroundColor: exp?.bgColor }}
-                >
+      {!isPhone ? (
+        <section className="experience-parent-container">
+          <div className="experience-sticky-frame">
+            <div className="experience-header">
+              <HoverTextAnimation text="EXPERIENCE" />
+            </div>
+            <div className="experience-wrapper">
+              {experienceData?.map((exp) => {
+                return (
                   <motion.div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "32px",
-                      flex: 1,
-                    }}
-                    variants={{
-                      hidden: { opacity: 0 },
-                      show: {
-                        opacity: 1,
-                        transition: {
-                          delayChildren: 0.2,
-                          staggerChildren: 0.25,
-                        },
-                      },
-                    }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
+                    className="experience-card-container"
+                    style={{ backgroundColor: exp?.bgColor }}
                   >
                     <motion.div
                       style={{
                         display: "flex",
-                        width: "100%",
-                        justifyContent: "end",
+                        flexDirection: "column",
+                        gap: "32px",
+                        flex: 1,
                       }}
                       variants={{
-                        hidden: { opacity: 0, y: 20 },
+                        hidden: { opacity: 0 },
                         show: {
                           opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.4 },
+                          transition: {
+                            delayChildren: 0.2,
+                            staggerChildren: 0.25,
+                          },
                         },
                       }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
                     >
-                      <MdOutlineWorkOutline
-                        color={exp?.primaryColor}
-                        className="card-icon"
-                      />
+                      <motion.div
+                        style={{
+                          display: "flex",
+                          width: "100%",
+                          justifyContent: "end",
+                        }}
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <MdOutlineWorkOutline
+                          color={exp?.primaryColor}
+                          className="card-icon"
+                        />
+                      </motion.div>
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="unbounded"
+                          fontSize={26}
+                          color={exp?.color}
+                        >
+                          {exp?.title}
+                        </Text>
+                      </motion.div>
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="unbounded"
+                          fontSize={14}
+                          color={exp?.color}
+                        >
+                          {exp?.description}
+                        </Text>
+                      </motion.div>
                     </motion.div>
                     <motion.div
                       variants={{
@@ -167,64 +210,107 @@ const Experience = () => {
                           transition: { duration: 0.4 },
                         },
                       }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
                     >
                       <Text
                         variant="unbounded"
-                        fontSize={26}
+                        fontSize={12}
                         color={exp?.color}
+                        // onClick={() => setIsModalOpen(true)}
+                        onClick={() => setSelectedExperience(exp)}
+                        className="experience-card-footer-container"
                       >
-                        {exp?.title}
-                      </Text>
-                    </motion.div>
-                    <motion.div
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        show: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.4 },
-                        },
-                      }}
-                    >
-                      <Text
-                        variant="unbounded"
-                        fontSize={14}
-                        color={exp?.color}
-                      >
-                        {exp?.description}
+                        Read more!
                       </Text>
                     </motion.div>
                   </motion.div>
-                  <motion.div
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.4 },
-                      },
-                    }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <Text
-                      variant="unbounded"
-                      fontSize={12}
-                      color={exp?.color}
-                      // onClick={() => setIsModalOpen(true)}
-                      onClick={() => setSelectedExperience(exp)}
-                      className="experience-card-footer-container"
-                    >
-                      Read more!
-                    </Text>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="experience-phone-section">
+          <div className="experience-phone-header">
+            <HoverTextAnimation text="EXPERIENCE" />
+          </div>
+          <div className="experience-phone-content">
+            <div className="experience-phone-wrapper">
+              {experienceData?.map((exp) => {
+                return (
+                  <motion.div
+                    className="experience-card-phone-container"
+                    style={{ backgroundColor: exp?.bgColor }}
+                  >
+                    <motion.div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "16px",
+                        flex: 1,
+                      }}
+                      variants={{
+                        hidden: { opacity: 0 },
+                        show: {
+                          opacity: 1,
+                          transition: {
+                            delayChildren: 0.2,
+                            staggerChildren: 0.25,
+                          },
+                        },
+                      }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
+                    >                     
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="unbounded"
+                          fontSize={20}
+                          color={exp?.color}
+                        >
+                          {exp?.title}
+                        </Text>
+                      </motion.div>
+
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="unbounded"
+                          fontSize={14}
+                          color={exp?.color}
+                        >
+                          {isPhone ? exp?.shortDescription : exp?.description}
+                        </Text>
+                      </motion.div>
+                    </motion.div>
+                    
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
       <ModalView
         isOpen={!!selectedExperience}
         onClose={() => setSelectedExperience(null)}

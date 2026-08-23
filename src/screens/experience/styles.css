@@ -36,8 +36,23 @@
   margin-left: 60px;
 }
 
+.experience-phone-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .experience-card-container {
   min-height: 367px;
+  max-width: 398px;
+  border-radius: 20px;
+  padding: 20px;
+  gap: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-card-phone-container {
   max-width: 398px;
   border-radius: 20px;
   padding: 20px;
@@ -71,4 +86,27 @@
 .card-icon:hover {
   transform: translateY(-2px);
   opacity: 0.85;
+}
+
+.experience-phone-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+.experience-phone-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.experience-phone-content {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
 }

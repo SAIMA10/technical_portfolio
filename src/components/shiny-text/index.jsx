@@ -22,6 +22,7 @@ const ShinyText = ({
   pauseOnHover = false,
   direction = "left",
   delay = 0,
+  fontSize = 52,
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
@@ -125,7 +126,7 @@ const ShinyText = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Text variant="poller-one" fontSize={52} className="coolors-text">
+      <Text variant="poller-one" fontSize={fontSize} className="coolors-text">
         {text.split("").map((char, index) => (
           <span
             key={`${char}-${index}`}

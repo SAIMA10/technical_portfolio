@@ -8,6 +8,7 @@ import HoverTextAnimation from "../../components/hover-text-animation";
 import Text from "../../components/typography";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IoMdSchool } from "react-icons/io";
+import { useScreen } from "../../hooks/index.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +16,7 @@ const educationData = [
   {
     id: 1,
     title: "Khalifa University, Abu Dhabi",
-    description: "MSc Computer Science (August 2025 - July 2026)",
+    description: "MSc Computer Science (2025 - 2026)",
     bgColor: colors["purple_2"],
     color: "baseColor",
     primaryColor: colors["baseColor"],
@@ -23,7 +24,7 @@ const educationData = [
   {
     id: 2,
     title: "Pune Institute of Computer Technology, Pune",
-    description: "B.E. Computer Science (August 2019 - June 2023)",
+    description: "B.E. Computer Science (2019 - 2023)",
     bgColor: colors["orange"],
     color: "whiteText",
     primaryColor: colors["whiteText"],
@@ -40,6 +41,7 @@ const educationData = [
 ];
 
 const Education = () => {
+  const isPhone = !useScreen("md");
   //   const sectionRef = useRef(null);
   //   const trackRef = useRef(null);
 
@@ -71,6 +73,83 @@ const Education = () => {
 
   return (
     <>
+      {isPhone ? (
+        <section className="education-phone-section">
+          <div className="education-phone-header">
+            <HoverTextAnimation text="EDUCATION" />
+          </div>
+          <div className="education-phone-content">
+            {educationData?.map((edu) => {
+              return (
+                <motion.div
+                  className="education-card-phone-container"
+                  style={{ backgroundColor: edu?.bgColor }}
+                >
+                  <motion.div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "16px",
+                      flex: 1,
+                    }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      show: {
+                        opacity: 1,
+                        transition: {
+                          delayChildren: 0.2,
+                          staggerChildren: 0.25,
+                        },
+                      },
+                    }}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        show: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.4 },
+                        },
+                      }}
+                    >
+                      <Text
+                        variant="unbounded"
+                        fontSize={20}
+                        color={edu?.color}
+                      >
+                        {edu?.title}
+                      </Text>
+                    </motion.div>
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        show: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.4 },
+                        },
+                      }}
+                    >
+                      <Text
+                        variant="unbounded"
+                        fontSize={14}
+                        color={edu?.color}
+                      >
+                        {edu?.description}
+                      </Text>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+      ) : (
       <section className="education-parent-container">
         <div className="education-sticky-frame">
           <div className="education-header">
@@ -167,6 +246,7 @@ const Education = () => {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 };

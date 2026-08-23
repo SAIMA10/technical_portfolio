@@ -43,8 +43,20 @@ const projectsData = [
     icon: (
       <FaGithub className="project-icon-link" color={colors["baseColor"]} />
     ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
+    ),
     icon2: (
       <LuFileVideo className="project-icon-link" color={colors["baseColor"]} />
+    ),
+    phoneIcon2: (
+      <LuFileVideo
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
     ),
     link: "https://github.com/safaminhaj/rl-traffic-control",
     link2:
@@ -67,6 +79,12 @@ const projectsData = [
     primaryColor: colors["whiteText"],
     icon: (
       <FaGithub className="project-icon-link" color={colors["whiteText"]} />
+    ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
     ),
     link: "https://github.com/SAIMA10/Game_Of_Life_MPI",
     icon2: "",
@@ -91,6 +109,12 @@ const projectsData = [
     icon: (
       <FaGithub className="project-icon-link" color={colors["baseColor"]} />
     ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
+    ),
     link: "https://github.com/SAIMA10/Ruya_AI_Hackathon",
     icon2: "",
     link2: "",
@@ -112,6 +136,12 @@ const projectsData = [
     primaryColor: colors["whiteText"],
     icon: (
       <FaGithub className="project-icon-link" color={colors["whiteText"]} />
+    ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
     ),
     link: "https://github.com/SAIMA10/notes-app/tree/master",
     icon2: "",
@@ -138,10 +168,22 @@ const projectsData = [
         color={colors["baseColor"]}
       />
     ),
+    phoneIcon: (
+      <TbReportMoney
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
+    ),
     link: "https://github.com/SAIMA10/expenses-app",
     icon2: (
       <TiWeatherCloudy
         className="project-icon-link"
+        color={colors["baseColor"]}
+      />
+    ),
+    phoneIcon2: (
+      <TiWeatherCloudy
+        className="project-icon-phone-link"
         color={colors["baseColor"]}
       />
     ),
@@ -165,9 +207,21 @@ const projectsData = [
     icon: (
       <FaGithub className="project-icon-link" color={colors["whiteText"]} />
     ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
+    ),
     link: "https://github.com/SAIMA10/portfolio",
     icon2: (
       <GrGamepad className="project-icon-link" color={colors["whiteText"]} />
+    ),
+    phoneIcon2: (
+      <GrGamepad
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
     ),
     link2: "https://saima-ansari.netlify.app/",
     skills: ["JavaScript", "ReactJS", "gsap", "framer-motion", "Spline"],
@@ -190,6 +244,12 @@ const projectsData = [
     icon: (
       <FaGithub className="project-icon-link" color={colors["baseColor"]} />
     ),
+    phoneIcon: (
+      <FaGithub
+        className="project-icon-phone-link"
+        color={colors["baseColor"]}
+      />
+    ),
     link: "https://github.com/SAIMA10/Time_Series_Plot/tree/main/Downloads",
     icon2: "",
     link2: "",
@@ -202,6 +262,7 @@ const Projects = () => {
   const trackRef = useRef(null);
 
   const isMonitorScreen = useScreen("2xl");
+  const isPhone = !useScreen("md");
 
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -233,31 +294,24 @@ const Projects = () => {
 
   return (
     <>
-      <section
-        className="projects-parent-container"
-        style={{
-          height: isMonitorScreen ? "200vh" : "280vh",
-        }}
-        ref={sectionRef}
-      >
-        <div className="projects-sticky-frame">
-          <div className="projects-header">
+      {isPhone ? (
+        <section className="projects-phone-section">
+          <div className="projects-phone-header">
             <HoverTextAnimation text="PROJECTS" />
           </div>
-          <div className="projects-wrapper" ref={trackRef}>
-            {/* <div className="projects-container"> */}
+          <div className="projects-phone-content">
             {projectsData?.map((project) => {
               return (
                 <motion.div
                   key={project.id}
-                  className="project-card-container"
+                  className="project-card-phone-container"
                   style={{ backgroundColor: project?.bgColor }}
                 >
                   <motion.div
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: "32px",
+                      gap: "16px",
                       flex: 1,
                     }}
                     variants={{
@@ -285,27 +339,8 @@ const Projects = () => {
                       }}
                     >
                       <Text
-                        variant="poller-one"
-                        fontSize={48}
-                        color={project?.color}
-                        className="project-card-id-container"
-                      >
-                        {project?.id}
-                      </Text>
-                    </motion.div>
-                    <motion.div
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        show: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.4 },
-                        },
-                      }}
-                    >
-                      <Text
                         variant="unbounded"
-                        fontSize={26}
+                        fontSize={20}
                         color={project?.color}
                       >
                         {project?.title}
@@ -320,46 +355,172 @@ const Projects = () => {
                           transition: { duration: 0.4 },
                         },
                       }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
                     >
-                      <Text
-                        variant="manrope"
-                        fontSize={16}
-                        color={project?.color}
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "12px",
+                          alignItems: "center",
+                          justifyContent: "flex-end",
+                          cursor: "pointer",
+                        }}
                       >
-                        {project?.description}
-                      </Text>
+                        <a
+                          href={project?.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {isPhone ? project?.phoneIcon : project?.icon}
+                        </a>
+                        {project?.link2 && (
+                          <a
+                            href={project?.link2}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {isPhone ? project?.phoneIcon2 : project?.icon2}
+                          </a>
+                        )}
+                      </div>
                     </motion.div>
-                  </motion.div>
-                  <motion.div
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.4 },
-                      },
-                    }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <Text
-                      variant="unbounded"
-                      fontSize={12}
-                      color={project?.color}
-                      onClick={() => setSelectedProject(project)}
-                      className="project-card-footer-container"
-                    >
-                      Read more!
-                    </Text>
                   </motion.div>
                 </motion.div>
               );
             })}
-            {/* </div> */}
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section
+          className="projects-parent-container"
+          style={{
+            height: isMonitorScreen ? "200vh" : "280vh",
+          }}
+          ref={sectionRef}
+        >
+          <div className="projects-sticky-frame">
+            <div className="projects-header">
+              <HoverTextAnimation text="PROJECTS" />
+            </div>
+            <div className="projects-wrapper" ref={trackRef}>
+              {/* <div className="projects-container"> */}
+              {projectsData?.map((project) => {
+                return (
+                  <motion.div
+                    key={project.id}
+                    className="project-card-container"
+                    style={{ backgroundColor: project?.bgColor }}
+                  >
+                    <motion.div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "32px",
+                        flex: 1,
+                      }}
+                      variants={{
+                        hidden: { opacity: 0 },
+                        show: {
+                          opacity: 1,
+                          transition: {
+                            delayChildren: 0.2,
+                            staggerChildren: 0.25,
+                          },
+                        },
+                      }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: false, amount: 0.3 }}
+                    >
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="poller-one"
+                          fontSize={48}
+                          color={project?.color}
+                          className="project-card-id-container"
+                        >
+                          {project?.id}
+                        </Text>
+                      </motion.div>
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="unbounded"
+                          fontSize={26}
+                          color={project?.color}
+                        >
+                          {project?.title}
+                        </Text>
+                      </motion.div>
+                      <motion.div
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.4 },
+                          },
+                        }}
+                      >
+                        <Text
+                          variant="manrope"
+                          fontSize={16}
+                          color={project?.color}
+                        >
+                          {project?.description}
+                        </Text>
+                      </motion.div>
+                    </motion.div>
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        show: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.4 },
+                        },
+                      }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
+                    >
+                      <Text
+                        variant="unbounded"
+                        fontSize={12}
+                        color={project?.color}
+                        onClick={() => setSelectedProject(project)}
+                        className="project-card-footer-container"
+                      >
+                        Read more!
+                      </Text>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+              {/* </div> */}
+            </div>
+          </div>
+        </section>
+      )}
       <ModalView
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}

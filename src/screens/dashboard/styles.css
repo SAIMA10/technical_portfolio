@@ -9,7 +9,50 @@
   /* height: 100vh; */
   /* overflow-y: scroll; */
   /* scroll-snap-type: y mandatory; */
-  padding-bottom: 80px; 
+  padding-bottom: 80px;
+}
+
+.phone-container-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Vertical snap-scroll wrapper for the phone sections (Experience,
+   Projects, Education). Each direct child becomes its own full-screen
+   "page" that snaps into place as the user swipes. */
+.phone-snap-scroll-container {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.phone-snap-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-snap-section {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.phone-snap-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dashboard-container {
@@ -50,7 +93,17 @@
   grid-template-columns: 360px 1fr;
   align-items: center;
   gap: 200px;
-  min-height: calc(100vh - 250px); 
+  min-height: calc(100vh - 250px);
+}
+
+.phone-dashboard-body-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  /* width: 100%; */
+  max-width: 400px;
+  align-items: center;
+  justify-content: center;
 }
 
 .dashboard-left-container {
@@ -80,6 +133,55 @@
   position: relative;
   padding: 2px;
   /* backdrop-filter: blur(12px); */
+}
+
+.phone-image-container {
+  width: 300px;
+  height: 300px;
+  border-radius: 50px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  transform: translateY(0);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  position: relative;
+  padding: 2px;
+}
+
+.phone-image-container::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50px;
+  padding: 3px;
+
+  background: linear-gradient(
+    270deg,
+    #e2dcff,
+    #ffa04c,
+    #664bfe,
+    #684dff,
+    #f2efff
+  );
+  filter: blur(2px);
+
+  background-size: 400% 400%;
+  animation: gradientMove 6s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .image-container::before {
@@ -119,6 +221,13 @@
 }
 
 .image-container:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 28px 55px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.phone-image-container:hover {
   transform: translateY(-6px);
   box-shadow:
     0 28px 55px rgba(0, 0, 0, 0.35),
@@ -193,6 +302,21 @@
   opacity: 0.85;
 }
 
+.content-icon-small {
+  color: var(--whiteText);
+  text-decoration: none;
+  height: 40px;
+  width: 40px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.content-icon-small:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
 .content-slider-arrow {
   padding: 4px;
   align-items: flex-start;
@@ -210,6 +334,86 @@
 
 .cat-icon {
   color: var(--purple2);
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
+}
+
+.phone-sidebar-icon-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 4;
+}
+
+.phone-sidebar-right-icon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  width: 200px;
+  z-index: 4;
+}
+
+.phone-sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a40, #271e37, #000000);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+}
+
+.phone-sidebar-child-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 42px;
+  justify-content: center;
+  height: 100vh;
+}
+
+.phone-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.phone-name-wrap {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.phone-content-slider-container {
+  width: 100%;
+}
+
+.phone-content-slide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.phone-content-slide-text {
+  text-align: center;
+  display: flex;
+}
+
+.phone-content-slide-action-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /* max-width: 220px; */
+  margin-top: 28px;
 }
