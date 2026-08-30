@@ -106,7 +106,7 @@ const ModalView = ({
                         <img
                           src={project?.images}
                           alt={project?.title}
-                          className="project-image"
+                          className={project?.imagesStyle ? "project-image-small" : "project-image"}
                         />
                       )}
                     </div>

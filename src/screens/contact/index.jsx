@@ -39,7 +39,7 @@ const Contact = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="row-contact-body-container">
+            <div className="row-contact-body-phone-container">
               <div className="contact-phone-item">
                 <FaLinkedin className="content-icon" />
                 <motion.div
@@ -105,7 +105,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="row-contact-body-container">
+            <div className="row-contact-body-phone-container">
               <div className="contact-phone-item">
                 <FaInstagram className="content-icon" />
                 <motion.div

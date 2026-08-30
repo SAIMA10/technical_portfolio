@@ -16,6 +16,7 @@ import Projects from "../projects/index.jsx";
 import Education from "../education/index.jsx";
 import Experience from "../experience/index.jsx";
 import Contact from "../contact/index.jsx";
+import Research from "../research/index.jsx";
 import ShinyText from "../../components/shiny-text/index.jsx";
 import { useScreen } from "../../hooks/index.jsx";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -49,11 +50,12 @@ const contentSlides = [
 
 const Dashboard = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  // const [isOpenSidebar, setIsOpenSidebar] = useState(false); 
+  // const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
   const projectsRef = useRef(null);
   const educationRef = useRef(null);
   const experienceRef = useRef(null);
+  const researchRef = useRef(null);
   const contactRef = useRef(null);
 
   const isPhone = !useScreen("md");
@@ -100,6 +102,18 @@ const Dashboard = () => {
               animate="show"
               className="top-bar-container"
             >
+              <motion.div
+                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+              >
+                <Text
+                  variant="manrope"
+                  fontSize={16}
+                  clickable
+                  onClick={() => scrollToSection(researchRef)}
+                >
+                  Research
+                </Text>
+              </motion.div>
               <motion.div
                 variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
               >
@@ -158,7 +172,7 @@ const Dashboard = () => {
                   clickable
                   onClick={() =>
                     window.open(
-                      "https://drive.google.com/file/d/1lNqJ6l54z9yM8EXsNs7-Mn9X94MmUiC2/view?usp=sharing",
+                      "https://drive.google.com/file/d/1EvYyYGXdB5TUpLy9NsG-ABwOnrxZwSQF/view?usp=sharing",
                       "_blank",
                     )
                   }
@@ -261,6 +275,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          <div ref={researchRef}>
+            <Research />
+          </div>
           <div ref={experienceRef}>
             <Experience />
           </div>
@@ -348,9 +365,9 @@ const Dashboard = () => {
                     disabled={false}
                     fontSize={32}
                   />
-                  </motion.div>
-                  
-                  <div className="phone-content-slider-container">
+                </motion.div>
+
+                <div className="phone-content-slider-container">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={contentSlides[activeIndex].id}
@@ -400,6 +417,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="phone-snap-scroll-container">
+            <div className="phone-snap-section" ref={researchRef}>
+              <Research />
+            </div>
             <div className="phone-snap-section" ref={experienceRef}>
               <Experience />
             </div>

@@ -17,6 +17,11 @@
 
 .row-contact-body-container {
   display: flex;
+  gap: 100px;
+}
+
+.row-contact-body-phone-container {
+  display: flex;
   gap: 10px;
 }
 
