@@ -42,7 +42,7 @@ const contentSlides = [
   },
   {
     id: 4,
-    text: "I take keen interest in researching emerging areas like Agentic AI, and how these technologies can shape more intelligent systems.",
+    text: "I take keen interest in researching emerging areas like Agentic AI, and how these technologies can shape intelligent systems.",
     icon: <BiLogoGmail className="content-icon" />,
     link: "mailto:sam.ansari2002@gmail.com",
   },
