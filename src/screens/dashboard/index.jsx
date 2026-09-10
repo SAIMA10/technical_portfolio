@@ -416,7 +416,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="phone-snap-scroll-container">
+          <div>
             <div className="phone-snap-section" ref={researchRef}>
               <Research />
             </div>

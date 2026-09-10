@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./styles.css";
 import HoverTextAnimation from "../../components/hover-text-animation";
-import { FaLinkedin, FaGithub, FaBehance, FaInstagram, FaCat } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaBehance,
+  FaInstagram,
+  FaCat,
+} from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import Text from "../../components/typography";
 import { IoIosCall } from "react-icons/io";
@@ -233,7 +239,15 @@ const Contact = () => {
         >
           <div className="row-contact-body-container">
             <div className="contact-phone-item">
-              <FaLinkedin className="content-icon" />
+              <FaLinkedin
+                className="content-icon"
+                onClick={() =>
+                  window.open(
+                    "https://www.linkedin.com/in/saima-ansari-66a99b188",
+                    "_blank",
+                  )
+                }
+              />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -257,7 +271,12 @@ const Contact = () => {
             </div>
 
             <div className="contact-phone-item">
-              <BiLogoGmail className="content-icon" />
+              <BiLogoGmail
+                className="content-icon"
+                onClick={() =>
+                  window.open("mailto:sam.ansari2002@gmail.com", "_blank")
+                }
+              />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -277,7 +296,7 @@ const Contact = () => {
               </motion.div>
             </div>
             <div className="contact-phone-item">
-              <IoIosCall className="content-icon" />
+              <IoIosCall className="content-icon" onClick={handleCopy} />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -297,7 +316,15 @@ const Contact = () => {
           </div>
           <div className="row-contact-body-container">
             <div className="contact-phone-item">
-              <FaInstagram className="content-icon" />
+              <FaInstagram
+                className="content-icon"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/sam_ukiyo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+                    "_blank",
+                  )
+                }
+              />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -320,7 +347,12 @@ const Contact = () => {
               </motion.div>
             </div>
             <div className="contact-phone-item">
-              <FaBehance className="content-icon" />
+              <FaBehance
+                className="content-icon"
+                onClick={() =>
+                  window.open("https://www.behance.net/saimaansari2", "_blank")
+                }
+              />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -343,7 +375,12 @@ const Contact = () => {
               </motion.div>
             </div>
             <div className="contact-phone-item">
-              <FaGithub className="content-icon" />
+              <FaGithub
+                className="content-icon"
+                onClick={() =>
+                  window.open("https://github.com/SAIMA10", "_blank")
+                }
+              />
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },

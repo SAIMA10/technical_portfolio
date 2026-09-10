@@ -29,15 +29,7 @@ const educationData = [
     color: "whiteText",
     primaryColor: colors["whiteText"],
     link: "https://github.com/SAIMA10/Game_Of_Life_MPI",
-  },
-  {
-    id: 3,
-    title: "Our Own English High School, Dubai",
-    description: "High Senior Secondary Certificate (2012 - 2019)",
-    bgColor: colors["purple_1"],
-    color: "baseColor",
-    primaryColor: colors["baseColor"],
-  },
+  }
 ];
 
 const Education = () => {
